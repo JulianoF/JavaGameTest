@@ -10,11 +10,12 @@ import javax.swing.JFrame;
 public class App {
 
     public static void main(String[] args) {
-        JFrame game = new JFrame("Hello World");
+        JFrame game = new JFrame("2D Platformer");
         game.setContentPane( new GamePanel());
         game.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         game.setResizable(false);
         game.pack();
+        game.setLocationRelativeTo(null);
         game.setVisible(true);
     }
 }
