@@ -19,8 +19,10 @@ public class GameStateManager {
     private HandleKeys keyHandler;
     
     public GameStateManager(HandleKeys kh){
-        gameStates = new ArrayList<>();
+        gameStates = new ArrayList<GameState>();
         keyHandler = kh;
+        
+        gameStates.add(new MainMenu(this));
     }
 
     public void update() {
@@ -39,11 +41,12 @@ public class GameStateManager {
     }
 
     public void draw(Graphics2D gphs) {
-        gphs.setColor(java.awt.Color.BLACK);
-        gphs.fillRect(0, 0, 1280, 1024);
+        //gphs.setColor(java.awt.Color.BLACK);
+       // gphs.fillRect(0, 0, 1280, 1024);
         
+        gameStates.get(0).draw(gphs);
         //test code below
-        gphs.setColor(java.awt.Color.RED);
-        gphs.draw3DRect(pX, pY, 150, 250, true);
+        /*gphs.setColor(java.awt.Color.RED);
+        gphs.draw3DRect(pX, pY, 150, 250, true);*/
     }
 }
