@@ -16,11 +16,13 @@ public class GameStateManager {
     public int pY = 0;
     
     private ArrayList<GameState> gameStates;
-    private HandleKeys keyHandler;
+    public HandleKeys keyHandler;
+    public MouseHandler mouseHandler;
     
-    public GameStateManager(HandleKeys kh){
+    public GameStateManager(HandleKeys kh, MouseHandler mh){
         gameStates = new ArrayList<GameState>();
         keyHandler = kh;
+        mouseHandler = mh;
         
         gameStates.add(new MainMenu(this));
         gameStates.add(new PauseMenu(this));
@@ -38,22 +40,19 @@ public class GameStateManager {
         }
         if(keyHandler.upPress == true){
             pY = pY-10;
-        }         
+        }
+        
+        gameStates.get(0).update();
+        
     }
 
     public void draw(Graphics2D gphs) {
-        //gphs.setColor(java.awt.Color.BLACK);
-       // gphs.fillRect(0, 0, 1280, 1024);
         
         gameStates.get(0).draw(gphs);
         
         //test code below
-
         gphs.setColor(java.awt.Color.RED);
         gphs.draw3DRect(pX, pY, 150, 250, true);
-
-       // gphs.setColor(java.awt.Color.RED);
-       // gphs.draw3DRect(pX, pY, 150, 250, true);
 
     }
 }

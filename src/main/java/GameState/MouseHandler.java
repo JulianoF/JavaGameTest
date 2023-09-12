@@ -4,6 +4,7 @@
  */
 package GameState;
 
+import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -13,8 +14,12 @@ import java.awt.event.MouseListener;
  */
 public class MouseHandler implements MouseListener {
 
+    public Point p = new Point();
+        
     @Override
     public void mouseClicked(MouseEvent e) {
+        p = e.getPoint();
+        System.out.println(String.format("X: %s, Y: %s", p.x, p.y));
         
     }
 

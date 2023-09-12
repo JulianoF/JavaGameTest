@@ -6,9 +6,11 @@ package jf.Main;
 
 import GameState.GameStateManager;
 import GameState.HandleKeys;
+import GameState.MouseHandler;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Toolkit;
@@ -22,13 +24,16 @@ import static jf.Main.constValues.*;
 /**
  *
  * @author juliano
+ * Game loop to implement functionality. Gets the basics down,
+ * will need to be optimized in the future.
  */
 public class GamePanel extends JPanel implements Runnable{
     
-    static Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
+   /* static Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
     public static final int HEIGHT = (int)size.height;
     public static final int WIDTH = (int)size.width;
-    public static final int SCALE = 2;
+    public static final int SCALE = 2;*/
+    int lastFPS;
     
     private Thread gameThread;
     private boolean running;
@@ -39,6 +44,7 @@ public class GamePanel extends JPanel implements Runnable{
     private GameStateManager gsm;
     
     HandleKeys keyHandler = new HandleKeys();
+    MouseHandler mouseHandler = new MouseHandler();
 
     
     public GamePanel(){
@@ -53,7 +59,7 @@ public class GamePanel extends JPanel implements Runnable{
         gphs = (Graphics2D) image.getGraphics();
         running = true;
         
-        gsm = new GameStateManager(keyHandler);
+        gsm = new GameStateManager(keyHandler,mouseHandler);
     }
     @Override
     public void addNotify(){
@@ -61,6 +67,7 @@ public class GamePanel extends JPanel implements Runnable{
         if(gameThread == null){
             gameThread = new Thread(this);
             addKeyListener(keyHandler);
+            addMouseListener(mouseHandler);
             gameThread.start();
         }
     }    
@@ -82,19 +89,20 @@ public class GamePanel extends JPanel implements Runnable{
 		lastime = now;	
 		if(delta >= 1) {
 			Update();
+                        Render();
                         draw();
-			Render();
 			frames++;
 			delta--;
                       
 			if(System.currentTimeMillis() - time >= 1000) {
 				System.out.println("fps:" + frames);
+                                lastFPS = frames;
                              
 				time += 1000;
 				frames = 0;
 			}
                     try{
-                        Thread.sleep(8);
+                        Thread.sleep(5);
                     }catch(Exception e){
                         e.printStackTrace();
                     }
@@ -108,6 +116,12 @@ public class GamePanel extends JPanel implements Runnable{
     }
     private void draw(){
         gsm.draw(gphs);
+        
+        //FPS COUNTER
+        gphs.setFont(new Font("Arial", Font.PLAIN, 16));
+	gphs.setColor(Color.WHITE);
+	gphs.drawString("FPS: "+lastFPS, constValues.WIDTH-70, 16);
+        
     }
     public void Render(){
         Graphics g2 = getGraphics();
