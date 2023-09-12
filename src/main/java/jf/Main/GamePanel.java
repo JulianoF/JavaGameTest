@@ -11,6 +11,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -23,6 +24,11 @@ import static jf.Main.constValues.*;
  * @author juliano
  */
 public class GamePanel extends JPanel implements Runnable{
+    
+    static Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
+    public static final int HEIGHT = (int)size.height;
+    public static final int WIDTH = (int)size.width;
+    public static final int SCALE = 2;
     
     private Thread gameThread;
     private boolean running;

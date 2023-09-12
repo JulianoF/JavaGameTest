@@ -23,6 +23,7 @@ public class GameStateManager {
         keyHandler = kh;
         
         gameStates.add(new MainMenu(this));
+        gameStates.add(new PauseMenu(this));
     }
 
     public void update() {
@@ -47,7 +48,12 @@ public class GameStateManager {
         gameStates.get(0).draw(gphs);
         
         //test code below
+
         gphs.setColor(java.awt.Color.RED);
         gphs.draw3DRect(pX, pY, 150, 250, true);
+
+       // gphs.setColor(java.awt.Color.RED);
+       // gphs.draw3DRect(pX, pY, 150, 250, true);
+
     }
 }
