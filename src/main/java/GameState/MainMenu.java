@@ -8,6 +8,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import jf.Main.GamePanel;
+import jf.Main.constValues;
 
 /**
  *
@@ -31,18 +32,19 @@ public class MainMenu extends GameState {
     public void draw(Graphics2D g) {
         // draw bg
 		g.setColor(Color.BLACK);
-		g.fillRect(0, 0, GamePanel.WIDTH, GamePanel.HEIGHT);
+		g.fillRect(0, 0, constValues.WIDTH, constValues.HEIGHT);
 		
 		// draw title
 		g.setColor(Color.RED);
-		g.setFont(new Font("Arial", Font.PLAIN, 28));
-		g.drawString("2D PLATFORMER", GamePanel.WIDTH/3 , GamePanel.HEIGHT/4 - 40);
+		g.setFont(new Font("Arial", Font.PLAIN, 68));
+		g.drawString("2D PLATFORMER", (constValues.WIDTH/3)-68 , constValues.HEIGHT/3);
 		
 		// draw menu options
-		g.setFont(new Font("Arial", Font.PLAIN, 18));
+		g.setFont(new Font("Arial", Font.PLAIN, 48));
 		g.setColor(Color.WHITE);
-		g.drawString("Start", 145, 165);
-		g.drawString("Quit", 145, 185);
+		g.drawString("Start", (constValues.WIDTH/3)-68, (constValues.HEIGHT/3)+168);
+                g.drawString("Settings (WIP)", (constValues.WIDTH/3)-68, (constValues.HEIGHT/3)+236);
+		g.drawString("Quit", (constValues.WIDTH/3)-68, (constValues.HEIGHT/3)+304);
 
     }
 

@@ -18,6 +18,7 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import static jf.Main.constValues.*;
 /**
  *
  * @author juliano
@@ -43,12 +44,12 @@ public class GamePanel extends JPanel implements Runnable{
     public GamePanel(){
         super();
         setBackground(Color.white);
-        setPreferredSize(new Dimension(WIDTH, HEIGHT));
+        setPreferredSize(new Dimension(constValues.WIDTH, constValues.HEIGHT));
         setFocusable(true);
         requestFocus();
     }
     public void init(){
-        image = new BufferedImage(WIDTH,HEIGHT,BufferedImage.TYPE_INT_RGB);
+        image = new BufferedImage(constValues.WIDTH,constValues.HEIGHT,BufferedImage.TYPE_INT_RGB);
         gphs = (Graphics2D) image.getGraphics();
         running = true;
         

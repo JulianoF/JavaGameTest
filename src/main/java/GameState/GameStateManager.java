@@ -46,8 +46,14 @@ public class GameStateManager {
        // gphs.fillRect(0, 0, 1280, 1024);
         
         gameStates.get(0).draw(gphs);
+        
         //test code below
+
+        gphs.setColor(java.awt.Color.RED);
+        gphs.draw3DRect(pX, pY, 150, 250, true);
+
        // gphs.setColor(java.awt.Color.RED);
        // gphs.draw3DRect(pX, pY, 150, 250, true);
+
     }
 }
