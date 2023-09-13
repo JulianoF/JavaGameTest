@@ -15,10 +15,12 @@ import java.awt.event.MouseListener;
 public class MouseHandler implements MouseListener {
 
     public Point p = new Point();
+    int clickCount = 0;
         
     @Override
     public void mouseClicked(MouseEvent e) {
         p = e.getPoint();
+        clickCount = e.getClickCount();
         System.out.println(String.format("X: %s, Y: %s", p.x, p.y));
         
     }

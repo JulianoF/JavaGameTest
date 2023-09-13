@@ -89,8 +89,8 @@ public class GamePanel extends JPanel implements Runnable{
 		lastime = now;	
 		if(delta >= 1) {
 			Update();
-                        Render();
                         draw();
+                        Render();
 			frames++;
 			delta--;
                       
