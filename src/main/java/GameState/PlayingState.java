@@ -4,6 +4,8 @@
  */
 package GameState;
 
+import Entities.EntityRenderer;
+import Entities.Player;
 import java.awt.Graphics2D;
 import jf.Main.constValues;
 
@@ -13,46 +15,33 @@ import jf.Main.constValues;
  */
 public class PlayingState extends GameState {
 
-    private int pX = 0;
-    private int pY = 0;
+    EntityRenderer player1;
     
     public PlayingState(GameStateManager gsm) {
         super(gsm);
+        init();
     }
 
     @Override
     public void init() {
+        player1 = new EntityRenderer(gsm,new Player(gsm));
     }
 
     @Override
     public void update() {
+        player1.update();
         handleInput();
     }
 
     @Override
     public void draw(Graphics2D g) {
         //test code below
+        player1.draw(g);
 
-        g.setColor(java.awt.Color.BLACK);
-        g.fillRect(0, 0, constValues.WIDTH, constValues.HEIGHT);
-        g.setColor(java.awt.Color.RED);
-        g.draw3DRect(pX, pY, 150, 250, true);
     }
 
     @Override
     public void handleInput() {
-        if(gsm.keyHandler.rightPress == true){
-            pX = pX+10;
-        }
-        if(gsm.keyHandler.downPress == true){
-            pY = pY+10;
-        }
-        if(gsm.keyHandler.leftPress == true){
-            pX = pX-10;
-        }
-        if(gsm.keyHandler.upPress == true){
-            pY = pY-10;
-        }
     }
     
 }

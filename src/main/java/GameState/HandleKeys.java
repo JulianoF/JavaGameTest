@@ -13,10 +13,10 @@ import java.awt.event.KeyListener;
  */
 public class HandleKeys implements KeyListener {
     
-    boolean upPress;
-    boolean downPress;
-    boolean leftPress;
-    boolean rightPress;
+    public boolean upPress;
+    public boolean downPress;
+    public boolean leftPress;
+    public boolean rightPress;
 
     @Override
     public void keyTyped(KeyEvent e) {
