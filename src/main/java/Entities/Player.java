@@ -13,8 +13,10 @@ import jf.Main.constValues;
  */
 public class Player extends Entity {
     
-    private int pX = 0; 
-    private int pY = 0;
+    private int velocityX = 0; 
+    private int velocityY = 0;
+    public int worldPosX;
+    public int worldPosY;
     
     public Player(GameStateManager gsm){
         super(gsm);
@@ -28,16 +30,16 @@ public class Player extends Entity {
     @Override
     public void update() {
         if(gsm.keyHandler.rightPress == true){
-            pX = pX+10;
+            velocityX = velocityX+10;
         }
         if(gsm.keyHandler.downPress == true){
-            pY = pY+10;
+            velocityY = velocityY+10;
         }
         if(gsm.keyHandler.leftPress == true){
-            pX = pX-10;
+            velocityX = velocityX-10;
         }
         if(gsm.keyHandler.upPress == true){
-            pY = pY-10;
+            velocityY = velocityY-10;
         }
     }
 
@@ -46,7 +48,7 @@ public class Player extends Entity {
         g.setColor(java.awt.Color.BLACK);
         g.fillRect(0, 0, constValues.WIDTH, constValues.HEIGHT);
         g.setColor(java.awt.Color.RED);
-        g.draw3DRect(pX, pY, 150, 250, true);
+        g.draw3DRect(velocityX, velocityY, 150, 250, true);
     }
     
 }

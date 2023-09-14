@@ -35,6 +35,9 @@ public class GameStateManager {
                 //System.out.println(currentState);
                 gameStates.get(0).update();
                 break;
+            case PAUSESTATE:
+                gameStates.get(1).update();
+                break;                
             case PLAYINGSTATE:
                 gameStates.get(2).update();
                 break;
@@ -47,6 +50,9 @@ public class GameStateManager {
             case MENUSTATE:
                 //System.out.println(currentState);
                 gameStates.get(0).draw(gphs);
+                break;
+            case PAUSESTATE:
+                gameStates.get(1).draw(gphs);
                 break;
             case PLAYINGSTATE:
                 gameStates.get(2).draw(gphs); 
