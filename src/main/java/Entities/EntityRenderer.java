@@ -26,7 +26,6 @@ public class EntityRenderer extends Entity{
 
     @Override
     public void init() {
-        
     }
 
     @Override

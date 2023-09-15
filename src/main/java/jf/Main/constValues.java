@@ -11,8 +11,8 @@ package jf.Main;
 public final class constValues {
     private constValues(){}
     
-    public static final int HEIGHT = 1024;
-    public static final int WIDTH = 1280;
+    public static final int HEIGHT = 768;
+    public static final int WIDTH = 1024;
     public static final int SCALE = 2;
     
 }
