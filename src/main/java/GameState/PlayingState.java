@@ -6,6 +6,7 @@ package GameState;
 
 import Entities.EntityRenderer;
 import Entities.Player;
+import Levels.TestLevel;
 import java.awt.Graphics2D;
 import jf.Main.constValues;
 
@@ -16,6 +17,7 @@ import jf.Main.constValues;
 public class PlayingState extends GameState {
 
     EntityRenderer player1;
+    TestLevel test1;
     
     public PlayingState(GameStateManager gsm) {
         super(gsm);
@@ -25,6 +27,7 @@ public class PlayingState extends GameState {
     @Override
     public void init() {
         player1 = new EntityRenderer(gsm,new Player(gsm));
+        test1 = new TestLevel(gsm);
     }
 
     @Override
@@ -35,8 +38,12 @@ public class PlayingState extends GameState {
 
     @Override
     public void draw(Graphics2D g) {
+        g.setColor(java.awt.Color.BLACK);
+        g.fillRect(0, 0, constValues.WIDTH, constValues.HEIGHT);
         //test code below
+        test1.draw(g);
         player1.draw(g);
+        
 
     }
 

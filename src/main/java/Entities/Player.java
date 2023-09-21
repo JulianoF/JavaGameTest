@@ -39,7 +39,7 @@ public class Player extends Entity {
     @Override
     public void init() {
         try {
-            spriteSheet = ImageIO.read(Player.class.getResource("/assets/PlayerSprites.png"));
+            spriteSheet = ImageIO.read(Player.class.getResource("../assets/PlayerSprites.png"));
         } catch (IOException ex) {
             Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -69,14 +69,16 @@ public class Player extends Entity {
         if(gsm.keyHandler.upPress == true){
             velocityY = velocityY-8;
         }
-        System.out.println(spriteCounter++);
+        if(spriteCounter <= 9){
+            System.out.println(spriteCounter++);
+        }else{
+            spriteCounter=0;
+        }
+        
     }
 
     @Override
-    public void draw(java.awt.Graphics2D g) {
-       
-        g.setColor(java.awt.Color.BLACK);
-        g.fillRect(0, 0, constValues.WIDTH, constValues.HEIGHT);        
+    public void draw(java.awt.Graphics2D g) {        
         
         if(gsm.keyHandler.rightPress){
             g.drawImage(walkForward[0], velocityX, velocityY,null);
