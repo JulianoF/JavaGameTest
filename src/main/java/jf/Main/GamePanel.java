@@ -13,14 +13,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Toolkit;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-import static jf.Main.constValues.*;
 /**
  *
  * @author juliano
@@ -29,10 +23,7 @@ import static jf.Main.constValues.*;
  */
 public class GamePanel extends JPanel implements Runnable{
     
-   /* static Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
-    public static final int HEIGHT = (int)size.height;
-    public static final int WIDTH = (int)size.width;
-    public static final int SCALE = 2;*/
+   /*static Dimension size = Toolkit.getDefaultToolkit().getScreenSize();*/
     int lastFPS;
     
     private Thread gameThread;
@@ -89,8 +80,8 @@ public class GamePanel extends JPanel implements Runnable{
 		lastime = now;	
 		if(delta >= 1) {
 			Update();
-                        Render();
                         draw();
+                        Render();
 			frames++;
 			delta--;
                       
@@ -102,7 +93,7 @@ public class GamePanel extends JPanel implements Runnable{
 				frames = 0;
 			}
                     try{
-                        Thread.sleep(5);
+                        Thread.sleep(1);
                     }catch(Exception e){
                         e.printStackTrace();
                     }

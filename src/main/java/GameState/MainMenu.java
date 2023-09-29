@@ -8,7 +8,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
-import java.awt.Label;
 import jf.Main.constValues;
 
 /**
@@ -28,8 +27,7 @@ public class MainMenu extends GameState {
     }
 
     @Override
-    public void init() {  
-    }
+    public void init() {}
 
     @Override
     public void update() {
@@ -53,12 +51,17 @@ public class MainMenu extends GameState {
                 
         metric = g.getFontMetrics();
 
-        //Draw Test Bounding Box for click control       
-        g.drawRect((constValues.WIDTH/3)-68, (constValues.HEIGHT/3)+120, metric.stringWidth("Start"), metric.getHeight());
+        //Draw Test Bounding Box for click control  
+        ////////////////////////////////////////////////////////////////////////
+        g.drawRect((constValues.WIDTH/3)-68, (constValues.HEIGHT/3)+120,
+                metric.stringWidth("Start"), metric.getHeight());
         
-        g.drawRect((constValues.WIDTH/3)-68, (constValues.HEIGHT/3)+188, metric.stringWidth("Settings (WIP)"), metric.getHeight());
+        g.drawRect((constValues.WIDTH/3)-68, (constValues.HEIGHT/3)+188,
+                metric.stringWidth("Settings (WIP)"), metric.getHeight());
         
-        g.drawRect((constValues.WIDTH/3)-68, (constValues.HEIGHT/3)+256, metric.stringWidth("Quit"), metric.getHeight());
+        g.drawRect((constValues.WIDTH/3)-68, (constValues.HEIGHT/3)+256,
+                metric.stringWidth("Quit"), metric.getHeight());
+        ////////////////////////////////////////////////////////////////////////
 
         if(startSelect){
             g.setColor(Color.CYAN);
@@ -101,6 +104,10 @@ public class MainMenu extends GameState {
           gsm.mouseHandler.p.y <= ((constValues.HEIGHT/3)+120)+metric.getHeight() ){
             startSelect = true;
             System.out.println("Click in Bounds");
+            if(gsm.mouseHandler.clickCount == 2){
+                System.out.println("Double Click Detected");
+                gsm.setState(StateList.PLAYINGSTATE);
+            }
        }
        else{
             startSelect = false;
@@ -113,6 +120,9 @@ public class MainMenu extends GameState {
           gsm.mouseHandler.p.y <= ((constValues.HEIGHT/3)+188)+metric.getHeight() ){
             settingSelect = true;
             System.out.println("Click in Bounds");
+            if(gsm.mouseHandler.clickCount == 2){
+                System.out.println("Double Click Detected");
+            }            
        }
        else{
             settingSelect = false;
@@ -125,6 +135,10 @@ public class MainMenu extends GameState {
           gsm.mouseHandler.p.y <= ((constValues.HEIGHT/3)+256)+metric.getHeight() ){
             quitSelect = true;
             System.out.println("Click in Bounds");
+            if(gsm.mouseHandler.clickCount == 2){
+                System.out.println("Double Click Detected");
+                System.exit(0);
+            }            
        }
        else{
             quitSelect = false;

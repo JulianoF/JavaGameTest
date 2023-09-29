@@ -12,47 +12,59 @@ import java.util.ArrayList;
  */
 public class GameStateManager {
     
-    public int pX = 0;
-    public int pY = 0;
-    
-    private ArrayList<GameState> gameStates;
+    private final ArrayList<GameState> gameStates;
+    private StateList currentState = StateList.MENUSTATE;
     public HandleKeys keyHandler;
     public MouseHandler mouseHandler;
     
     public GameStateManager(HandleKeys kh, MouseHandler mh){
-        gameStates = new ArrayList<GameState>();
+        
+        gameStates = new ArrayList<>();
         keyHandler = kh;
         mouseHandler = mh;
         
         gameStates.add(new MainMenu(this));
         gameStates.add(new PauseMenu(this));
+        gameStates.add(new PlayingState(this));
     }
 
-    public void update() {
-        if(keyHandler.rightPress == true){
-            pX = pX+10;
-        }
-        if(keyHandler.downPress == true){
-            pY = pY+10;
-        }
-        if(keyHandler.leftPress == true){
-            pX = pX-10;
-        }
-        if(keyHandler.upPress == true){
-            pY = pY-10;
-        }
+    public void update() {  
         
-        gameStates.get(0).update();
-        
+        switch(currentState){
+            case MENUSTATE:
+                //System.out.println(currentState);
+                gameStates.get(0).update();
+                break;
+            case PAUSESTATE:
+                gameStates.get(1).update();
+                break;                
+            case PLAYINGSTATE:
+                gameStates.get(2).update();
+                break;
+        }  
     }
 
     public void draw(Graphics2D gphs) {
         
-        gameStates.get(0).draw(gphs);
-        
-        //test code below
-        gphs.setColor(java.awt.Color.RED);
-        gphs.draw3DRect(pX, pY, 150, 250, true);
-
+        switch(currentState){
+            case MENUSTATE:
+                //System.out.println(currentState);
+                gameStates.get(0).draw(gphs);
+                break;
+            case PAUSESTATE:
+                gameStates.get(1).draw(gphs);
+                break;
+            case PLAYINGSTATE:
+                gameStates.get(2).draw(gphs); 
+                break;
+        }        
+    }
+    
+    public void setState(StateList STATE){
+        currentState = STATE;
+    }
+    
+    public StateList getState(){
+        return currentState;
     }
 }
